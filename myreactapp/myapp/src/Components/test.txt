@@ -1,0 +1,144 @@
+import { getByText, render, screen, waitFor } from "@testing-library/react";
+import Home from "./home";
+import userEvent from "@testing-library/user-event";
+
+describe("numberTest", () => {
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, 5);
+    await userEvent.type(num2, 7);
+    await userEvent.click(calc);
+
+    await waitFor(()=>{
+        const result = screen.findAllByTestId
+    })
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "-5");
+    await userEvent.type(num2, "-3");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "10");
+    await userEvent.type(num2, "-4");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "0");
+    await userEvent.type(num2, "9");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "3");
+    await userEvent.type(num2, "2");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "1000000");
+    await userEvent.type(num2, "500000");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "2.5");
+    await userEvent.type(num2, "1.75");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    await userEvent.type(num1, "-7");
+    await userEvent.type(num2, "7");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    const max = Number.MAX_VALUE;
+    await userEvent.type(num1, max);
+    await userEvent.type(num2, "1");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    const min = Number.MIN_VALUE;
+    await userEvent.type(num1, min);
+    await userEvent.type(num2, "-1");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    const st = "hello"
+    await userEvent.type(num1, st);
+    await userEvent.type(num2, "3");
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+  test("renders learn react link", async () => {
+    const { getAllByTestId, getByText } = render(<Home />);
+    const num1 = getAllByTestId("num1");
+    const num2 = getAllByTestId("num2");
+    const calc = getByText("calc");
+    const st = "world";
+    await userEvent.type(num1, "6");
+    await userEvent.type(num2, st);
+    await userEvent.click(calc);
+
+    // await expect("9").toBeInTheDocument()
+  });
+});
