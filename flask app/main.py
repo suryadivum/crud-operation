@@ -1,7 +1,10 @@
 from flask import *
 import psycopg2 as db
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
+
 
 conn = db.connect(database="postgres", user="postgres", password="postgres", host="127.0.0.1")
 cur = conn.cursor()
@@ -13,6 +16,7 @@ def home():
 
 
 @app.route("/login", methods=["POST"])
+@cross_origin()
 def login():
     if request.method == "POST":
         data = request.get_json()
@@ -21,7 +25,7 @@ def login():
                 cur.execute("select * from flaskapp where username=%s", (data['username'],))
                 res = cur.fetchall()
                 if res[0][3] == data['passwd']:
-                    return res
+                    return res, 200
                 else:
                     return "enter the correct user name and password"
             except db.Error:
