@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, request, Response
 import psycopg2 as db
 from flask_cors import CORS, cross_origin
 
@@ -49,7 +49,7 @@ def signup():
             try:
                 cur.execute(query, (username, name, email, passwd,))
                 conn.commit()
-                return "register successful"
+                return Response("success", 200)
             except db.Error:
                 conn.rollback()
                 return "try again later!!!"
