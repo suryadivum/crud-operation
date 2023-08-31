@@ -7,79 +7,77 @@ import logo from "./divum_logo.png";
 function Create() {
   const date = () => {
     const today = new Date();
-    return String(today.getFullYear()) + "-0" + String(today.getMonth()+1) + "-" + String(today.getDate());
+    return (
+      String(today.getFullYear()) +
+      "-0" +
+      String(today.getMonth() + 1) +
+      "-" +
+      String(today.getDate())
+    );
   };
   useEffect(() => {
     const dt = date();
     console.log(dt);
   }, []);
   return (
-    <div style={{ display: "flex", flexDirection: "column" ,width:'100%'}}>
+    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <div className="logo">
-        <img src={logo} alt="logo" /> 
+        <img src={logo} alt="logo" />
       </div>
-      <div className="form-box" style={{alignSelf:'center'}}>
-        <div className="form-value">
-          <form>
-            <h2>Add Record</h2>
-            <div id="message" className="error"></div>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="inputbox">
-                  <input type="text" required />
-                  <label htmlFor="">First Name</label>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="inputbox">
-                  <input type="text" required />
-                  <label htmlFor="">Last Name</label>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="inputbox">
-                  <input type="email" required />
-                  <label htmlFor="">Email</label>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="inputbox">
-                  <input type="text" id="mobile" required />
-                  <label htmlFor="mobile">Mobile Number</label>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="inputbox">
-                  <input type="date" max="2023-08-30" required />
-                  <label htmlFor="">Date Of Birth</label>
-                </div>
-                <span className="error" id="pass_err">
-                  {" "}
-                </span>
-              </div>
-              <div className="col-md-6">
-                <div className="inputbox">
-                  {/* <input type="" required /> */}
-                  <label htmlFor="">Address</label>
-                  <textarea></textarea>
-                </div>
-                <span className="error" id="pass_err">
-                  Max50
-                </span>
-              </div>
-            </div>
-            <div className="text-center">
-              <button name="submitbtn" id="submitbtn">
-                Sign in
-              </button>
-            </div>
-          </form>
+      <form id="form" method="POST">
+        <p>Add New Record</p>
+        <div className="form-group">
+          <label htmlFor="fname">First Name</label>
+          <br />
+          <div className="input-group">
+            <input type="text" id="fname" placeholder="Enter Your First Name" />
+          </div>
         </div>
-      </div>
+        <div className="form-group">
+          <label htmlFor="lname">Last Name</label>
+          <br />
+          <div className="input-group">
+            <input type="text" id="lname" placeholder="Enter Your Last Name" />
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="Email">Email</label>
+          <br />
+          <div className="input-group">
+            <input type="email" id="email" placeholder="Enter Your Email" />
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="mobile">Mobile Number</label>
+          <br />
+          <div className="input-group">
+            <input type="number" id="number" placeholder="Enter Your number" />
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="dob">Date Of birth</label>
+          <br />
+          <div className="input-group">
+            <input type="date" id="dob" />
+          </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="Address">Address</label>
+          <br />
+          <div className="input-group">
+            <textarea
+              name="address"
+              id="address"
+              cols="30"
+              rows="3"
+              placeholder="Max 50"
+            ></textarea>
+          </div>
+        </div>
+        <button type="submit" className="btn btn-outline-danger">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

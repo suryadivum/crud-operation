@@ -2,9 +2,7 @@ import React from "react";
 import logo from "./divum_logo.png";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
@@ -52,7 +50,11 @@ function Home() {
               <th className="col">Option</th>
             </tr>
           </thead>
-          <tbody className="table-primary"></tbody>
+          <tbody className="table-light">
+            <tr>
+              <th className="col">name</th>
+            </tr>
+          </tbody>
         </table>
       </div>
     </>

@@ -25,7 +25,7 @@ def login():
                 cur.execute("select * from flaskapp where username=%s", (data['username'],))
                 res = cur.fetchall()
                 if res[0][3] == data['passwd']:
-                    return res, 200
+                    return Response(res, 200)
                 else:
                     return "enter the correct user name and password"
             except db.Error:
