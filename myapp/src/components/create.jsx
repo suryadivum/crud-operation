@@ -5,20 +5,7 @@ import "./create.css";
 import logo from "./divum_logo.png";
 
 function Create() {
-  const date = () => {
-    const today = new Date();
-    return (
-      String(today.getFullYear()) +
-      "-0" +
-      String(today.getMonth() + 1) +
-      "-" +
-      String(today.getDate())
-    );
-  };
-  useEffect(() => {
-    const dt = date();
-    console.log(dt);
-  }, []);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <div className="logo">
