@@ -12,7 +12,7 @@ body {
 
   width: 400px;
   padding: 40px;
-  margin: 150px auto;
+  margin: 30px auto;
 
   -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
@@ -64,4 +64,13 @@ input {
   width: 100%;
   border: none;
   border-radius: 0 5px 5px 0;
+}
+
+span{
+  color: red;
+}
+
+.pic{
+  height: 100px;
+  width: 100px;
 }

@@ -15,24 +15,17 @@ def home():
     return "this is home page"
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET"])
 @cross_origin()
 def login():
-    if request.method == "POST":
-        data = request.get_json()
-        if data['username'] != "" and data['passwd'] != "":
-            try:
-                cur.execute("select * from flaskapp where username=%s", (data['username'],))
-                res = cur.fetchall()
-                if res[0][3] == data['passwd']:
-                    return Response(res, 200)
-                else:
-                    return "enter the correct user name and password"
-            except db.Error:
-                conn.rollback()
-                return "something went wrong"
-        else:
-            return "enter all details"
+    if request.method == "GET":
+        try:
+            cur.execute("select * from records")
+            res = cur.fetchall()
+            return Response(res, 200)
+        except db.Error:
+            conn.rollback()
+            return "something went wrong"
     return "try again!!!"
 
 
