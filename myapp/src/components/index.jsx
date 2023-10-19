@@ -4,52 +4,79 @@ import "bootstrap/dist/js/bootstrap.bundle.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { getUser, deleteUser } from "./api";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 function Home() {
   const navigate = useNavigate();
   const [tab, settable] = useState([]);
 
+
   async function del(email) {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await deleteUser(email);
-        if (res.status === 200) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          ).then(()=>{window.location.reload();});
+        try {
+          const res = await deleteUser(email);
+          if (res.status === 200) {
+            Swal.fire("Deleted!", "Your file has been deleted", "success").then(
+              () => {
+                window.location.reload();
+              }
+            );
+          }
+        } catch (error) {
+          Swal.fire({
+            // position: "top-end",
+            icon: "error",
+            title: "Something went wrong :(",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
+      } else {
+        Swal.fire("Cancelled", "Your Records is safe :)", "error");
       }
-    })
+    });
   }
 
   async function user() {
-    const data = await getUser();
-    settable(data);
+    try {
+      const data = await getUser();
+      console.log(data)
+      settable(data);
+    } catch (error) {
+      Swal.fire({
+        //position: "top-end",
+        icon: "error",
+        title: "Something went wrong :(",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   }
-  useEffect(() => { user() },[]);
+  useEffect(() => {
+    user();
+  }, []);
 
   return (
     <>
       <div className="d-flex justify-content-between align-items-center flex-row mb-3 p-4">
         <div>
-          <img src={logo} className="pic" alt="logo"/>
+          <img src={logo} className="pic" alt="logo" />
         </div>
         <div className="p-lg-5">
           <h2>User Details</h2>
         </div>
         <div className="p-lg-5">
           <button
+            data-testid="testAddBtn"
             onClick={() => {
               navigate("/create");
             }}
@@ -83,12 +110,28 @@ function Home() {
                   <td> {maindata[4]}</td>
                   <td>
                     <div className="d-flex justify-content-evenly">
-                      <button className="btn btn-outline-primary editbtn" onClick={() => { navigate(`/update/${maindata[0]}`) }}>Edit</button>
-                      <button className="btn btn-outline-danger delbtn" onClick={() => { del(maindata[0]) }}>Delete</button>
+                      <button
+                        data-testid="testEditBtn"
+                        className="btn btn-outline-primary editbtn"
+                        onClick={() => {
+                          navigate(`/update/${maindata[0]}`);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        data-testid="testDelBtn"
+                        className="btn btn-outline-danger delbtn"
+                        onClick={() => {
+                          del(maindata[0]);
+                        }}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>

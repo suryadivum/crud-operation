@@ -12,10 +12,9 @@ cur = conn.cursor()
 @app.route("/getUser", methods=["GET"])
 @cross_origin()
 def getUser():
-    print("user")
     if request.method == "GET":
         try:
-            cur.execute("select * from records")
+            cur.execute("select * from records order by date desc")
             res = cur.fetchall()
             return res
         except db.Error:
@@ -54,7 +53,7 @@ def editUser(email):
 def update():
     if request.method == "POST":
         data = request.get_json()
-        query = "update records set fname=%s, lname=%s, mobile=%s, dob=%s, address=%s where email=%s"
+        query = "update records set fname=%s, lname=%s, mobile=%s, dob=%s, address=%s, date=current_timestamp where email=%s"
         try:
             cur.execute(query, (data['fname'], data['lname'], data['mobile'], data['dob'], data['address'], data['email'],))
             conn.commit()
@@ -84,7 +83,7 @@ def delete(email):
 def addUser():
     if request.method == "POST":
         data = request.get_json()
-        query = "insert into records(email, fname, lname, mobile, dob, address) values(%s,%s,%s,%s,%s,%s)"
+        query = "insert into records(email, fname, lname, mobile, dob, address, date) values(%s,%s,%s,%s,%s,%s,current_timestamp)"
         try:
             cur.execute(query, (data['email'], data['fname'], data['lname'], data['mobile'], data['dob'], data['address']))
             conn.commit()
